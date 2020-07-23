@@ -5,70 +5,72 @@ import hospitalrestservice.demo.Entities.PatientEntity;
 import hospitalrestservice.demo.Services.PatientEntityService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Data
-@NoArgsConstructor
+@RequiredArgsConstructor
+@RequestMapping("patient/")
 public class PatientEntityController {
     PatientEntityService patientEntityService;
 
-    @GetMapping("medicineCard/{medicineCardId}")
-    PatientEntity findByMedicineCardId(@PathVariable Long medicineCardId) {
+    @GetMapping("findBy/MedicineCardId/{medicineCardId}")
+    public PatientEntity findByMedicineCardId(@PathVariable Long medicineCardId) {
         return patientEntityService.findByMedicineCardId(medicineCardId);
     }
 
-    @GetMapping("firstName/{firstName}")
-    List<PatientEntity> findAllByFirstName(@PathVariable String firstName) {
-        return patientEntityService.findAllByFirstName(firstName);
+    @GetMapping("findBy/FirstName/{firstName}/And/LastName/{lastName}")
+    public PatientEntity findByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
+        return patientEntityService.findByFirstNameAndLastName(firstName, lastName);
     }
 
-    @GetMapping("phoneNumber/{phoneNumber}/address/{address}")
-    List<PatientEntity> findByPhoneNumberAndAddress(@PathVariable Long phoneNumber, @PathVariable String address) {
-        return patientEntityService.findByPhoneNumberAndAddress(phoneNumber, address);
+    @GetMapping("findAllBy/Age/{age}/And/Diagnosis/{diagnosis}")
+    public List<PatientEntity> findAllByAgeAndDiagnosis(@PathVariable Byte age, @PathVariable String diagnosis) {
+        return patientEntityService.findAllByAgeAndDiagnosis(age, diagnosis);
     }
 
-    @GetMapping("appointedTime/{appointedTime}")
-    PatientEntity findByPhoneNumber(@PathVariable String appointedTime) {
-        return patientEntityService.findByAppointedTime(appointedTime);
+    @GetMapping("findAllBy/NumberOfVisits/{numberOfVisits}")
+    public List<PatientEntity> findAllByNumberOfVisits(@PathVariable Short numberOfVisits) {
+        return patientEntityService.findAllByNumberOfVisits(numberOfVisits);
     }
 
-    @DeleteMapping("address/{address}")
-    PatientEntity deleteAllByAddress(@PathVariable String address) {
-        return patientEntityService.deleteAllByAddress(address);
+    @DeleteMapping("deleteByMedicineCardId/{medicineCardId}")
+    public PatientEntity deleteByMedicineCardId(@PathVariable Long medicineCardId) {
+        return patientEntityService.deleteByMedicineCardId(medicineCardId);
     }
 
-    @DeleteMapping("secondName/{secondName}")
-    List<PatientEntity> deleteAllBySecondName(@PathVariable String secondName) {
-        return patientEntityService.deleteAllBySecondName(secondName);
+    @DeleteMapping("deleteBy/FirstName/{firstName}/And/LastName/{lastName}")
+    public PatientEntity deleteByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
+        return patientEntityService.deleteByFirstNameAndLastName(firstName, lastName);
     }
 
-    @DeleteMapping("gender/{gender}/visitEvaluation/{visitEvaluation}")
-    List<PatientEntity> deleteAllByGenderAndVisitEvaluation(@PathVariable Character gender, @PathVariable Byte visitEvaluation) {
-        return patientEntityService.deleteAllByGenderAndVisitEvaluation(gender, visitEvaluation);
+    @DeleteMapping("deleteAllBy/NumberOfVisits/{numberOfVisits}/And/Age/{age}")
+    public List<PatientEntity> deleteAllByNumberOfVisitsAndAge(@PathVariable Short numberOfVisits, @PathVariable Byte age) {
+        return patientEntityService.deleteAllByNumberOfVisitsAndAge(numberOfVisits, age);
     }
 
-    @DeleteMapping("gender/{gender}/appointedTime/{appointedTime}")
-    List<PatientEntity> deleteByAppointedTimeAndGender(@PathVariable Character gender, @PathVariable String appointedTime) {
-        return patientEntityService.deleteByAppointedTimeAndGender(appointedTime, gender);
+    @DeleteMapping("deleteAllByDiagnosis/{diagnosis}")
+    public List<PatientEntity> deleteAllByDiagnosis(@PathVariable String diagnosis) {
+        return patientEntityService.deleteAllByDiagnosis(diagnosis);
     }
 
     @PostMapping()
-    public void createPatientEntity(PatientEntity patientEntity) {
-        patientEntityService.createPatientEntity(patientEntity);
+    public void createPatient(@RequestBody PatientEntity patientEntity) {
+        patientEntityService.createPatient(patientEntity);
     }
 
-    @PutMapping("appointedTime")
-
-    public void updatePatientAppointedTime(PatientEntityDTO patientEntityDTO) {
-        patientEntityService.updatePatientAppointedTime(patientEntityDTO);
+    @PutMapping("updatePatientEntityDiagnosis/")
+    public void updatePatientEntityDiagnosis(@RequestBody PatientEntityDTO patientEntityDTO) {
+        patientEntityService.updatePatientEntityDiagnosis(patientEntityDTO);
     }
 
-    @PutMapping("review")
-    public void updatePatientReview(PatientEntityDTO patientEntityDTO) {
-        patientEntityService.updatePatientReview(patientEntityDTO);
+    @PutMapping("/updatePatientEntityNumberOfVisits/")
+    public void updatePatientEntityNumberOfVisits(@RequestBody PatientEntityDTO patientEntityDTO) {
+        patientEntityService.updatePatientEntityNumberOfVisits(patientEntityDTO);
     }
 }
+
+
 

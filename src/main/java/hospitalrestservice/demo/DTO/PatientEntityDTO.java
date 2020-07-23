@@ -1,9 +1,6 @@
 package hospitalrestservice.demo.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -11,25 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 public class PatientEntityDTO {
 
-   @NonNull
-    private Long medicineCardId;
 
-    private Character gender;
+    Long medicineCardId;
 
-    String address;
+    Long phoneNumber;
 
-    String review;
+    String firstName;
 
-    @NonNull
-    String appointedTime;
+    String lastName;
 
-    @NonNull
-    Integer phoneNumber;
+    Character gender;
 
-    Byte visitEvaluation;
+    String diagnosis;
+
+    Short numberOfVisits;
+
+    Byte age;
+
 
 }

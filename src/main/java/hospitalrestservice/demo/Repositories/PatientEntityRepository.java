@@ -1,9 +1,7 @@
 package hospitalrestservice.demo.Repositories;
 
 import hospitalrestservice.demo.Entities.PatientEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,18 +13,21 @@ public interface PatientEntityRepository extends JpaRepository<PatientEntity, Lo
 
     Optional<PatientEntity> findByMedicineCardId(Long medicineCardId);
 
-    List<PatientEntity> findAllByFirstName(String firstName);
+    Optional<PatientEntity> findByFirstNameAndLastName(String firstName, String lastName);
 
-    List<PatientEntity> findByPhoneNumberAndAddress(Long phoneNumber, String Address);
+    List<PatientEntity> findAllByAgeAndDiagnosis(Byte age, String diagnosis);
 
-    Optional<PatientEntity> findByAppointedTime(String appointedTime);
+    List<PatientEntity> findAllByNumberOfVisits(Short numberOfVisits);
 
-    Optional<PatientEntity> deleteAllByAddress(String address);
 
-    List<PatientEntity> deleteAllBySecondName(String secondName);
+    Optional<PatientEntity> deleteByMedicineCardId(Long medicineCardId);
 
-    List<PatientEntity> deleteAllByGenderAndVisitEvaluation(Character gender, Byte visitEvaluation);
+    Optional<PatientEntity> deleteByFirstNameAndLastName(String firstName, String lastName);
 
-    List<PatientEntity> deleteByAppointedTimeAndGender(String appointedTime, Character gender);
+    List<PatientEntity> deleteAllByNumberOfVisitsAndAge(Short numberOfVisits, Byte age);
+
+    List<PatientEntity> deleteAllByDiagnosis(String diagnosis);
+
+
 
 }

@@ -5,6 +5,10 @@ import hospitalrestservice.demo.Entities.PatientEntity;
 import hospitalrestservice.demo.Repositories.PatientEntityRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,48 +24,51 @@ public class PatientEntityService {
         return patientEntityRepository.findByMedicineCardId(medicineCardId).orElseThrow(RuntimeException::new);
     }
 
-    public List<PatientEntity> findAllByFirstName(String firstName) {
-        return patientEntityRepository.findAllByFirstName(firstName);
+    public PatientEntity findByFirstNameAndLastName(String firstName, String lastName) {
+        return patientEntityRepository.findByFirstNameAndLastName(firstName, lastName).orElseThrow(RuntimeException::new);
     }
 
-    public List<PatientEntity> findByPhoneNumberAndAddress(Long phoneNumber, String address) {
-        return patientEntityRepository.findByPhoneNumberAndAddress(phoneNumber, address);
+    public List<PatientEntity> findAllByAgeAndDiagnosis(Byte age, String diagnosis) {
+        return patientEntityRepository.findAllByAgeAndDiagnosis(age, diagnosis);
     }
 
-    public PatientEntity findByAppointedTime(String appointedTime) {
-        return patientEntityRepository.findByAppointedTime(appointedTime).orElseThrow(RuntimeException::new);
+    public List<PatientEntity> findAllByNumberOfVisits(Short numberOfVisits) {
+        return patientEntityRepository.findAllByNumberOfVisits(numberOfVisits);
     }
 
-    public PatientEntity deleteAllByAddress(String address) {
-        return patientEntityRepository.deleteAllByAddress(address).orElseThrow(RuntimeException::new);
+    public PatientEntity deleteByMedicineCardId(Long medicineCardId) {
+        return patientEntityRepository.deleteByMedicineCardId(medicineCardId).orElseThrow(RuntimeException::new);
     }
 
-    public List<PatientEntity> deleteAllByGenderAndVisitEvaluation(Character gender, Byte visitEvaluation) {
-        return patientEntityRepository.deleteAllByGenderAndVisitEvaluation(gender, visitEvaluation);
+    public PatientEntity deleteByFirstNameAndLastName(String firstName, String lastName) {
+        return patientEntityRepository.deleteByFirstNameAndLastName(firstName, lastName).orElseThrow(RuntimeException::new);
     }
 
-    public List<PatientEntity> deleteByAppointedTimeAndGender(String appointedTime, Character gender) {
-        return patientEntityRepository.deleteByAppointedTimeAndGender(appointedTime, gender);
+    public List<PatientEntity> deleteAllByNumberOfVisitsAndAge(Short numberOfVisits, Byte age) {
+        return patientEntityRepository.deleteAllByNumberOfVisitsAndAge(numberOfVisits, age);
     }
 
-    public void createPatientEntity(PatientEntity patientEntity) {
+    public List<PatientEntity> deleteAllByDiagnosis(String diagnosis) {
+        return patientEntityRepository.deleteAllByDiagnosis(diagnosis);
+    }
+
+    public void createPatient(PatientEntity patientEntity) {
         patientEntityRepository.save(patientEntity);
     }
 
-    public List<PatientEntity> deleteAllBySecondName(String secondName) {
-        return patientEntityRepository.deleteAllBySecondName(secondName);
-    }
-
-
-    public void updatePatientAppointedTime(PatientEntityDTO patientEntityDTO) {
+    public void updatePatientEntityDiagnosis(PatientEntityDTO patientEntityDTO) {
         var patientEntity = findByMedicineCardId(patientEntityDTO.getMedicineCardId());
-        patientEntityDTO.setAppointedTime(patientEntityDTO.getAppointedTime());
-    }
-
-    public void updatePatientReview(PatientEntityDTO patientEntityDTO) {
-        var patientEntity = findByMedicineCardId(patientEntityDTO.getMedicineCardId());
-        patientEntity.setReview(patientEntityDTO.getReview());
+        patientEntity.setDiagnosis(patientEntityDTO.getDiagnosis());
         patientEntityRepository.save(patientEntity);
-
     }
+
+
+    public void updatePatientEntityNumberOfVisits(PatientEntityDTO patientEntityDTO) {
+        var patientEntity = findByMedicineCardId(patientEntityDTO.getMedicineCardId());
+        patientEntity.setNumberOfVisits(patientEntityDTO.getNumberOfVisits());
+        patientEntityRepository.save(patientEntity);
+    }
+
 }
+
+

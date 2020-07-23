@@ -15,7 +15,7 @@ public class PatientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long medicineCardId;
+    Long medicineCardId;
 
     @Column
     Long phoneNumber;
@@ -24,20 +24,17 @@ public class PatientEntity {
     String firstName;
 
     @Column
-    String secondName;
+    String lastName;
 
     @Column
-    private Character gender;
+    Character gender;
 
     @Column
-    String address;
+    String diagnosis;
 
     @Column
-    String review;
+    Short numberOfVisits;
 
     @Column
-    String appointedTime;
-
-    @Column
-    Byte visitEvaluation;
+    Byte age;
 }
