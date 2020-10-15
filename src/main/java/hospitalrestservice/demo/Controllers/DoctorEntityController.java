@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("doctor/")
 public class DoctorEntityController {
 
-
     private final DoctorEntityService doctorEntityService;
 
     @GetMapping("findByDoctorId/{doctorId}/")
@@ -59,7 +58,7 @@ public class DoctorEntityController {
     }
 
     @PostMapping()
-    public void createDoctorEntity(@RequestBody DoctorEntity doctorEntity) {
+    public void createDoctorEntity(@RequestBody DoctorEntityDTO doctorEntity) {
         doctorEntityService.createDoctorEntity(doctorEntity);
     }
 

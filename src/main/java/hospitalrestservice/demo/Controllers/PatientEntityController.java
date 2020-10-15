@@ -14,7 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("patient/")
 public class PatientEntityController {
-    PatientEntityService patientEntityService;
+
+    private final PatientEntityService patientEntityService;
 
     @GetMapping("findBy/MedicineCardId/{medicineCardId}")
     public PatientEntity findByMedicineCardId(@PathVariable Long medicineCardId) {

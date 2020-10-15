@@ -13,7 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("visit/")
 public class VisitEntityController {
-    VisitEntityService visitEntityService;
+
+    private final VisitEntityService visitEntityService;
 
 
     @GetMapping("{visitId}")

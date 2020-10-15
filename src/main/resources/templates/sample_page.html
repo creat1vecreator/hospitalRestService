@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/sample">
+    <input type="checkbox" name="consultation" value="Hotline">Hotline
+    <input type="checkbox" name="consultation" value="Chat-bot">Chat-bot
+    <input type="checkbox" name="consultation" value="Chat_with_expert">Chat with expert
+    <input type="checkbox" name="consultation" value="Mail">Mail
+    <input type="submit">
+
+    <div>
+        <ul>
+            <li th:each="sample : ${samples}">
+                <p th:text="${sample.getName()}"></p>
+            </li>
+        </ul>
+    </div>
+</form>
+</body>
+</html>

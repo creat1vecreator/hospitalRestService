@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("offerings/")
 public class OfferEntityController {
 
-    OfferEntityService offerEntityService;
+    private final OfferEntityService offerEntityService;
 
     @GetMapping("findBy/ServiceId/{serviceId}")
     public OfferEntity findByServiceId(@PathVariable Long serviceId) {

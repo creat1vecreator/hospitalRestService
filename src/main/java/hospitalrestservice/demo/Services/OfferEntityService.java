@@ -5,10 +5,7 @@ import hospitalrestservice.demo.Entities.OfferEntity;
 import hospitalrestservice.demo.Repositories.OfferEntityRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +14,6 @@ import java.util.Optional;
 @Service
 @NoArgsConstructor
 @Data
-
 public class OfferEntityService {
     OfferEntityRepository offerEntityRepository;
 

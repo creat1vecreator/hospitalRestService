@@ -18,12 +18,12 @@ public interface DoctorEntityRepository extends JpaRepository<DoctorEntity, Long
 
     List<DoctorEntity> findAllByAverageRate(Byte averageRate);
 
-    Optional<DoctorEntity> deleteByDoctorId(Long doctorId);
-
     Optional<DoctorEntity> deleteByLastName(String lastName);
 
     List<DoctorEntity> deleteAllByWorkSchedule(String workSchedule);
 
     List<DoctorEntity> deleteAllByAverageRateAndEducation(Byte averageRate, String education);
+
+    Optional<DoctorEntity> deleteByDoctorId(Long doctorId);
 
 }

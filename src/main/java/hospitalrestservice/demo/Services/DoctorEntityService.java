@@ -3,6 +3,7 @@ package hospitalrestservice.demo.Services;
 import hospitalrestservice.demo.DTO.DoctorEntityDTO;
 import hospitalrestservice.demo.Entities.DoctorEntity;
 import hospitalrestservice.demo.Repositories.DoctorEntityRepository;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Data
 public class DoctorEntityService {
-
 
     private final DoctorEntityRepository doctorEntityRepository;
 
@@ -49,8 +50,12 @@ public class DoctorEntityService {
         return doctorEntityRepository.deleteAllByAverageRateAndEducation(averageRate, education);
     }
 
-    public void createDoctorEntity(DoctorEntity doctorEntity) {
-        doctorEntityRepository.save(doctorEntity);
+    public void createDoctorEntity(DoctorEntityDTO doctorEntityDTO) {
+        doctorEntityRepository.save(DoctorEntity
+                .builder()
+                .averageRate(doctorEntityDTO.getAverageRate())
+                .education(doctorEntityDTO.getEducation())
+                .build());
     }
 
     public void updateDoctorEntityEducation(DoctorEntityDTO doctorEntityDTO) {
